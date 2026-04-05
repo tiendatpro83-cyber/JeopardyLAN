@@ -1,0 +1,274 @@
+{
+  "categories": [
+    {
+      "name": "Lịch Sử Bách Khoa",
+      "question_pool": {
+        "100": [
+          {"id": 1, "question": "HUST được thành lập năm nào?", "answer": "1956", "keywords": "1956", "hint": "Thập niên 50"},
+          {"id": 2, "question": "Trụ sở chính của HUST nằm ở quận nào?", "answer": "Hai Bà Trưng", "keywords": "Hai Bà Trưng", "hint": "HBT"},
+          {"id": 3, "question": "Tên gọi đầu tiên của trường là gì?", "answer": "Đại học Bách khoa Hà Nội", "keywords": "Bách khoa", "hint": "Tên hiện tại"}
+        ],
+        "200": [
+          {"id": 4, "question": "Hiệu trưởng đầu tiên là ai?", "answer": "Trần Đại Nghĩa", "keywords": "Trần Đại Nghĩa", "hint": "Vua vũ khí"},
+          {"id": 5, "question": "Cổng chính của trường nằm trên đường nào?", "answer": "Giải Phóng", "keywords": "Giải Phóng", "hint": "GP"},
+          {"id": 6, "question": "Tòa nhà nào là biểu tượng lâu đời nhất?", "answer": "C1", "keywords": "C1", "hint": "Tòa nhà đối diện cổng"}
+        ],
+        "300": [
+          {"id": 7, "question": "Thư viện lớn nhất trường tên là gì?", "answer": "Tạ Quang Bửu", "keywords": "Tạ Quang Bửu", "hint": "TQB"},
+          {"id": 8, "question": "Ngày hội truyền thống của HUST là ngày nào?", "answer": "15/10", "keywords": "15/10", "hint": "Tháng 10"},
+          {"id": 9, "question": "HUST có bao nhiêu cổng chính/phụ?", "answer": "4", "keywords": "4", "hint": "Giải Phóng, Đại Cồ Việt, Trần Đại Nghĩa..."}
+        ],
+        "400": [
+          {"id": 10, "question": "Bách Khoa đạt danh hiệu Anh hùng Lao động năm nào?", "answer": "2006", "keywords": "2006", "hint": "Kỷ niệm 50 năm"},
+          {"id": 11, "question": "Diện tích khuôn viên HUST khoảng bao nhiêu ha?", "answer": "26", "keywords": "26", "hint": "Khoảng 26 héc-ta"},
+          {"id": 12, "question": "Năm nào trường chuyển mô hình thành Đại học (University)?", "answer": "2022", "keywords": "2022", "hint": "Gần đây"}
+        ],
+        "500": [
+          {"id": 13, "question": "Bức tượng 'Sinh viên Bách Khoa' nằm ở đâu?", "answer": "Hồ Tiền", "keywords": "Hồ Tiền", "hint": "Cạnh thư viện"},
+          {"id": 14, "question": "Ai là người thiết kế tòa nhà C1?", "answer": "Liên Xô", "keywords": "Liên Xô", "hint": "Chuyên gia nước bạn"},
+          {"id": 15, "question": "Khẩu hiệu (Slogan) mới của HUST là gì?", "answer": "Một Bách Khoa", "keywords": "Một Bách Khoa", "hint": "One HUST"}
+        ]
+      }
+    },
+    {
+      "name": "Thế Giới Lập Trình",
+      "question_pool": {
+        "100": [
+          {"id": 31, "question": "Ngôn ngữ nào thường dùng để xây dựng cấu trúc trang web?", "answer": "HTML", "keywords": "HTML", "hint": "HyperText Markup Language"},
+          {"id": 32, "question": "Dấu nào dùng để kết thúc câu lệnh trong C++?", "answer": "Chấm phẩy", "keywords": ";, chấm phẩy", "hint": ";"},
+          {"id": 33, "question": "Python có cần dùng dấu chấm phẩy cuối dòng không?", "answer": "Không", "keywords": "không", "hint": "Ngôn ngữ tối giản"}
+        ],
+        "200": [
+          {"id": 34, "question": "Ký hiệu '==' trong lập trình dùng để làm gì?", "answer": "So sánh bằng", "keywords": "so sánh, bằng", "hint": "Khác với dấu gán"},
+          {"id": 35, "question": "Hàm print() trong Python dùng để làm gì?", "answer": "Xuất dữ liệu", "keywords": "in, xuất", "hint": "Hiển thị ra màn hình"},
+          {"id": 36, "question": "Biến kiểu 'int' dùng để lưu trữ loại dữ liệu gì?", "answer": "Số nguyên", "keywords": "số nguyên", "hint": "Integer"}
+        ],
+        "300": [
+          {"id": 37, "question": "Ngôn ngữ nào được coi là 'Cha đẻ' của Java và C++?", "answer": "C", "keywords": "C", "hint": "Ngôn ngữ cấp thấp"},
+          {"id": 38, "question": "Trong Git, lệnh nào dùng để đẩy code lên server?", "answer": "Push", "keywords": "push", "hint": "Đẩy đi"},
+          {"id": 39, "question": "Cấu trúc dữ liệu nào hoạt động theo cơ chế LIFO?", "answer": "Stack", "keywords": "stack, ngăn xếp", "hint": "Last In First Out"}
+        ],
+        "400": [
+          {"id": 40, "question": "Framework React được phát triển bởi công ty nào?", "answer": "Meta", "keywords": "Meta, Facebook", "hint": "Mạng xã hội lớn nhất"},
+          {"id": 41, "question": "Thuật ngữ 'Bug' bắt nguồn từ việc phát hiện con gì trong máy tính?", "answer": "Con bướm đêm", "keywords": "bướm đêm, côn trùng", "hint": "Moth"},
+          {"id": 42, "question": "Cơ sở dữ liệu không dùng SQL được gọi là gì?", "answer": "NoSQL", "keywords": "NoSQL", "hint": "Not Only SQL"}
+        ],
+        "500": [
+          {"id": 43, "question": "Ai được coi là nữ lập trình viên đầu tiên trên thế giới?", "answer": "Ada Lovelace", "keywords": "Ada Lovelace", "hint": "Nữ toán học người Anh"},
+          {"id": 44, "question": "Kiến trúc REST thường sử dụng định dạng dữ liệu nào để trao đổi?", "answer": "JSON", "keywords": "JSON", "hint": "JavaScript Object Notation"},
+          {"id": 45, "question": "Độ phức tạp của thuật toán Binary Search là bao nhiêu?", "answer": "O(log n)", "keywords": "log n", "hint": "Logarit"}
+        ]
+      }
+    },
+    {
+      "name": "Toán Học Giải Trí",
+      "question_pool": {
+        "100": [
+          {"id": 16, "question": "Số nào là số nguyên tố chẵn duy nhất?", "answer": "2", "keywords": "2", "hint": "Số nhỏ nhất"},
+          {"id": 17, "question": "Tổng 3 góc trong một tam giác bằng bao nhiêu?", "answer": "180", "keywords": "180", "hint": "Một nửa vòng tròn"},
+          {"id": 18, "question": "Căn bậc hai của 144 là?", "answer": "12", "keywords": "12", "hint": "Mười..."}
+        ],
+        "200": [
+          {"id": 19, "question": "Số Pi (π) xấp xỉ bằng bao nhiêu?", "answer": "3.14", "keywords": "3.14", "hint": "14/3"},
+          {"id": 20, "question": "Số nào không có số nghịch đảo?", "answer": "0", "keywords": "0", "hint": "Zero"},
+          {"id": 21, "question": "Phép toán nghịch đảo của lũy thừa là?", "answer": "Căn thức", "keywords": "Căn", "hint": "Root"}
+        ],
+        "300": [
+          {"id": 22, "question": "Ai được mệnh danh là ông tổ hình học?", "answer": "Euclid", "keywords": "Euclid, Ơ-clit", "hint": "Tiên đề..."},
+          {"id": 23, "question": "Dãy số 1, 1, 2, 3, 5, 8... gọi là dãy gì?", "answer": "Fibonacci", "keywords": "Fibonacci", "hint": "Số thỏ"},
+          {"id": 24, "question": "Hình nào có vô số trục đối xứng?", "answer": "Hình tròn", "keywords": "Tròn", "hint": "Circle"}
+        ],
+        "400": [
+          {"id": 25, "question": "Đạo hàm của sin(x) là?", "answer": "cos(x)", "keywords": "cos", "hint": "Lượng giác"},
+          {"id": 26, "question": "Logarit tự nhiên có cơ số là bao nhiêu?", "answer": "e", "keywords": "e", "hint": "Số Euler"},
+          {"id": 27, "question": "Định lý nào dùng cho tam giác vuông?", "answer": "Pythagoras", "keywords": "Pythagoras, Pi-ta-go", "hint": "A bình + B bình"}
+        ],
+        "500": [
+          {"id": 28, "question": "Bài toán 7 cây cầu ở thành phố nào khởi đầu đồ thị?", "answer": "Konigsberg", "keywords": "Konigsberg", "hint": "Đức"},
+          {"id": 29, "question": "Tập hợp số ảo ký hiệu là gì?", "answer": "i", "keywords": "i", "hint": "Imaginary"},
+          {"id": 30, "question": "Ai chứng minh được định lý cuối cùng của Fermat?", "answer": "Andrew Wiles", "keywords": "Andrew Wiles", "hint": "Năm 1994"}
+        ]
+      }
+    },
+    {
+      "name": "Địa Lý Thế Giới",
+      "question_pool": {
+        "100": [
+          {"id": 61, "question": "Thủ đô của Việt Nam là thành phố nào?", "answer": "Hà Nội", "keywords": "Hà Nội", "hint": "Thành phố vì hòa bình"},
+          {"id": 62, "question": "Đỉnh núi nào cao nhất thế giới?", "answer": "Everest", "keywords": "Everest", "hint": "Nằm ở dãy Himalaya"},
+          {"id": 63, "question": "Quốc gia nào có diện tích lớn nhất thế giới?", "answer": "Nga", "keywords": "Nga", "hint": "Russia"}
+        ],
+        "200": [
+          {"id": 64, "question": "Sông dài nhất thế giới là sông nào?", "answer": "Sông Nile", "keywords": "Nile, Nin", "hint": "Ở Châu Phi"},
+          {"id": 65, "question": "Đất nước mặt trời mọc là biệt danh của quốc gia nào?", "answer": "Nhật Bản", "keywords": "Nhật Bản", "hint": "Japan"},
+          {"id": 66, "question": "Sa mạc lớn nhất thế giới tên là gì?", "answer": "Sahara", "keywords": "Sahara", "hint": "Sa mạc nóng"}
+        ],
+        "300": [
+          {"id": 67, "question": "Thành phố nào được mệnh danh là 'Kinh đô ánh sáng'?", "answer": "Paris", "keywords": "Paris", "hint": "Thủ đô nước Pháp"},
+          {"id": 68, "question": "Đông Nam Á có bao nhiêu quốc gia?", "answer": "11", "keywords": "11", "hint": "Số nước trong ASEAN + 1"},
+          {"id": 69, "question": "Đảo lớn nhất thế giới (không phải lục địa) là?", "answer": "Greenland", "keywords": "Greenland", "hint": "Băng Đảo"}
+        ],
+        "400": [
+          {"id": 70, "question": "Quốc gia nào nằm ở cả 2 châu lục Á và Âu?", "answer": "Thổ Nhĩ Kỳ", "keywords": "Thổ Nhĩ Kỳ, Nga", "hint": "Turkey"},
+          {"id": 71, "question": "Kênh đào nào nối liền Đại Tây Dương và Thái Bình Dương?", "answer": "Panama", "keywords": "Panama", "hint": "Ở Trung Mỹ"},
+          {"id": 72, "question": "Hồ sâu nhất thế giới tên là gì?", "answer": "Baikal", "keywords": "Baikal", "hint": "Ở Nga"}
+        ],
+        "500": [
+          {"id": 73, "question": "Thủ đô của Úc (Australia) là thành phố nào?", "answer": "Canberra", "keywords": "Canberra", "hint": "Không phải Sydney"},
+          {"id": 74, "question": "Dòng sông nào chảy qua nhiều quốc gia nhất?", "answer": "Danube", "keywords": "Danube", "hint": "Ở Châu Âu"},
+          {"id": 75, "question": "Thành phố thấp nhất thế giới nằm dưới mực nước biển là?", "answer": "Jericho", "keywords": "Jericho", "hint": "Gần Biển Chết"}
+        ]
+      }
+    },
+    {
+      "name": "Thể Thao & Olympic",
+      "question_pool": {
+        "100": [
+          {"id": 76, "question": "Môn thể thao nào được gọi là 'Môn thể thao vua'?", "answer": "Bóng đá", "keywords": "Bóng đá", "hint": "Football"},
+          {"id": 77, "question": "Vòng tròn Olympic có bao nhiêu màu sắc khác nhau?", "answer": "5", "keywords": "5", "hint": "Tượng trưng cho 5 châu lục"},
+          {"id": 78, "question": "Mỗi hiệp đấu bóng đá chính thức kéo dài bao nhiêu phút?", "answer": "45", "keywords": "45", "hint": "Tổng 2 hiệp là 90"}
+        ],
+        "200": [
+          {"id": 79, "question": "Giải vô địch bóng đá thế giới diễn ra mấy năm một lần?", "answer": "4", "keywords": "4", "hint": "Chu kỳ Olympic"},
+          {"id": 80, "question": "Kình ngư người Mỹ nào giữ kỷ lục nhiều HCV Olympic nhất?", "answer": "Michael Phelps", "keywords": "Michael Phelps", "hint": "Siêu kình ngư"},
+          {"id": 81, "question": "Tay vợt nào được gọi là 'Vua sân đất nện'?", "answer": "Rafael Nadal", "keywords": "Nadal", "hint": "Người Tây Ban Nha"}
+        ],
+        "300": [
+          {"id": 82, "question": "SEA Games 31 được tổ chức tại quốc gia nào?", "answer": "Việt Nam", "keywords": "Việt Nam", "hint": "Năm 2022"},
+          {"id": 83, "question": "Cầu thủ nào đoạt nhiều Quả bóng vàng nhất lịch sử?", "answer": "Lionel Messi", "keywords": "Messi", "hint": "Số 10 Argentina"},
+          {"id": 84, "question": "Cự ly chạy Marathon dài bao nhiêu km?", "answer": "42.195", "keywords": "42", "hint": "Trên 40km"}
+        ],
+        "400": [
+          {"id": 85, "question": "Biệt danh của đội tuyển bóng đá quốc gia Hà Lan là gì?", "answer": "Cơn lốc màu da cam", "keywords": "da cam", "hint": "Màu áo truyền thống"},
+          {"id": 86, "question": "VĐV chạy nhanh nhất thế giới Usain Bolt là người nước nào?", "answer": "Jamaica", "keywords": "Jamaica", "hint": "Vùng Caribe"},
+          {"id": 87, "question": "Điểm số cao nhất cho một ván ném Bowling là bao nhiêu?", "answer": "300", "keywords": "300", "hint": "Strike tuyệt đối"}
+        ],
+        "500": [
+          {"id": 88, "question": "Ai là người sáng lập ra phong trào Olympic hiện đại?", "answer": "Pierre de Coubertin", "keywords": "Coubertin", "hint": "Người Pháp"},
+          {"id": 89, "question": "Đội bóng nào giành chức vô địch World Cup đầu tiên năm 1930?", "answer": "Uruguay", "keywords": "Uruguay", "hint": "Chủ nhà năm đó"},
+          {"id": 90, "question": "Môn thể thao nào sử dụng chiếc vợt nặng nhất?", "answer": "Quần vợt", "keywords": "Tennis", "hint": "Tennis"}
+        ]
+      }
+    },
+    {
+      "name": "Tiếng Anh (English)",
+      "question_pool": {
+        "100": [
+          {"id": 91, "question": "What is the plural form of 'Child'?", "answer": "Children", "keywords": "Children", "hint": "Trẻ em"},
+          {"id": 92, "question": "Which month comes after June?", "answer": "July", "keywords": "July", "hint": "Tháng 7"},
+          {"id": 93, "question": "Opposite of 'Expensive' is...?", "answer": "Cheap", "keywords": "Cheap", "hint": "Rẻ"}
+        ],
+        "200": [
+          {"id": 94, "question": "How many letters are there in the English alphabet?", "answer": "26", "keywords": "26", "hint": "Bảng chữ cái"},
+          {"id": 95, "question": "What is the past tense of 'Go'?", "answer": "Went", "keywords": "Went", "hint": "Đã đi"},
+          {"id": 96, "question": "A person who treats sick people is a...?", "answer": "Doctor", "keywords": "Doctor", "hint": "Bác sĩ"}
+        ],
+        "300": [
+          {"id": 97, "question": "What is the synonym of 'Happy'?", "answer": "Joyful", "keywords": "Joyful, glad, cheerful", "hint": "Vui vẻ"},
+          {"id": 98, "question": "Which planet is known as the 'Red Planet'?", "answer": "Mars", "keywords": "Mars", "hint": "Sao Hỏa"},
+          {"id": 99, "question": "What is a 'Century'?", "answer": "100 years", "keywords": "100", "hint": "Thế kỷ"}
+        ],
+        "400": [
+          {"id": 100, "question": "What do you call a baby cat?", "answer": "Kitten", "keywords": "Kitten", "hint": "Mèo con"},
+          {"id": 101, "question": "Someone who speaks two languages is...?", "answer": "Bilingual", "keywords": "Bilingual", "hint": "Song ngữ"},
+          {"id": 102, "question": "Complete the idiom: 'Piece of ...' (Easy)?", "answer": "Cake", "keywords": "Cake", "hint": "Dễ như ăn bánh"}
+        ],
+        "500": [
+          {"id": 103, "question": "Who wrote 'Romeo and Juliet'?", "answer": "William Shakespeare", "keywords": "Shakespeare", "hint": "Đại thi hào Anh"},
+          {"id": 104, "question": "What is the longest word in English (45 letters)?", "answer": "Pneumonoultramicroscopicsilicovolcanoconiosis", "keywords": "Pneumono", "hint": "Bệnh phổi do bụi núi lửa"},
+          {"id": 105, "question": "What does 'DIY' stand for?", "answer": "Do It Yourself", "keywords": "Do It Yourself", "hint": "Tự làm"}
+        ]
+      }
+    },
+    {
+      "name": "Vật Lý & Thiên Văn",
+      "question_pool": {
+        "100": [
+          {"id": 106, "question": "Đơn vị đo lực là gì?", "answer": "Newton", "keywords": "Newton, N", "hint": "Ký hiệu N"},
+          {"id": 107, "question": "Trái Đất quay quanh vật thể nào?", "answer": "Mặt Trời", "keywords": "Mặt Trời", "hint": "Sun"},
+          {"id": 108, "question": "Ánh sáng mất bao lâu để đi từ Mặt trời đến Trái đất?", "answer": "8 phút", "keywords": "8 phút", "hint": "Khoảng 500 giây"}
+        ],
+        "200": [
+          {"id": 109, "question": "Hiện tượng cầu vồng có mấy màu cơ bản?", "answer": "7", "keywords": "7", "hint": "Đỏ, cam, vàng..."},
+          {"id": 110, "question": "Ai là người phát hiện ra lực vạn vật hấp dẫn?", "answer": "Isaac Newton", "keywords": "Newton", "hint": "Quả táo rơi"},
+          {"id": 111, "question": "Vật chất tồn tại ở mấy trạng thái cơ bản?", "answer": "3", "keywords": "3, 4", "hint": "Rắn, lỏng, khí"}
+        ],
+        "300": [
+          {"id": 112, "question": "Đơn vị đo điện trở là gì?", "answer": "Ohm", "keywords": "Ohm, Ôm", "hint": "Ký hiệu Ω"},
+          {"id": 113, "question": "Gương nào có thể hội tụ ánh sáng?", "answer": "Gương cầu lõm", "keywords": "lõm", "hint": "Dùng trong kính thiên văn"},
+          {"id": 114, "question": "Hành tinh nào lớn nhất hệ mặt trời?", "answer": "Sao Mộc", "keywords": "Mộc, Jupiter", "hint": "Jupiter"}
+        ],
+        "400": [
+          {"id": 115, "question": "Âm thanh truyền nhanh nhất trong môi trường nào?", "answer": "Chất rắn", "keywords": "Rắn", "hint": "Rắn > Lỏng > Khí"},
+          {"id": 116, "question": "Năng lượng không tự nhiên sinh ra hay mất đi gọi là gì?", "answer": "Bảo toàn năng lượng", "keywords": "bảo toàn", "hint": "Định luật..."},
+          {"id": 117, "question": "Hiện tượng ánh sáng bị đổi hướng khi qua mặt phân cách gọi là?", "answer": "Khúc xạ", "keywords": "khúc xạ", "hint": "Refraction"}
+        ],
+        "500": [
+          {"id": 118, "question": "Hố đen (Black Hole) có lực gì cực mạnh?", "answer": "Hấp dẫn", "keywords": "hấp dẫn, trọng lực", "hint": "Lực hút"},
+          {"id": 119, "question": "Hạt nào mang điện tích dương trong nguyên tử?", "answer": "Proton", "keywords": "Proton", "hint": "Nằm trong nhân"},
+          {"id": 120, "question": "Ai phát biểu: 'Hãy cho tôi một điểm tựa, tôi sẽ nhấc bổng trái đất'?", "answer": "Archimedes", "keywords": "Archimedes, Ác-si-mét", "hint": "Đòn bẩy"}
+        ]
+      }
+    },
+    {
+      "name": "Hóa Học Quanh Ta",
+      "question_pool": {
+        "100": [
+          {"id": 121, "question": "Ký hiệu hóa học của nguyên tố Oxy là?", "answer": "O", "keywords": "O", "hint": "Oxygen"},
+          {"id": 122, "question": "Kim loại nào ở trạng thái lỏng ở nhiệt độ thường?", "answer": "Thủy ngân", "keywords": "Thủy ngân, Hg", "hint": "Trong nhiệt kế"},
+          {"id": 123, "question": "Khí nào cần thiết cho quá trình quang hợp của cây?", "answer": "CO2", "keywords": "CO2, Cacbonic", "hint": "Cacbon đioxit"}
+        ],
+        "200": [
+          {"id": 124, "question": "Số nguyên tử của nguyên tố Hydro là bao nhiêu?", "answer": "1", "keywords": "1", "hint": "Đứng đầu bảng"},
+          {"id": 125, "question": "Dung dịch có pH < 7 được gọi là gì?", "answer": "Axit", "keywords": "Axit", "hint": "Vị chua"},
+          {"id": 126, "question": "Kim loại nào dẫn điện tốt nhất?", "answer": "Bạc", "keywords": "Bạc, Ag", "hint": "Ag"}
+        ],
+        "300": [
+          {"id": 127, "question": "Ký hiệu hóa học của Sắt là gì?", "answer": "Fe", "keywords": "Fe", "hint": "Ferrum"},
+          {"id": 128, "question": "Kim loại nào quý hiếm và được dùng làm trang sức phổ biến nhất?", "answer": "Vàng", "keywords": "Vàng, Au", "hint": "Au"},
+          {"id": 129, "question": "Chất nào được gọi là 'dung môi vạn năng'?", "answer": "Nước", "keywords": "Nước, H2O", "hint": "Chiếm 70% cơ thể"}
+        ],
+        "400": [
+          {"id": 130, "question": "Kim loại kiềm nào phản ứng mãnh liệt với nước tạo ra tiếng nổ?", "answer": "Natri", "keywords": "Natri, Na", "hint": "Sodium"},
+          {"id": 131, "question": "Khí nào gây ra hiệu ứng nhà kính nhiều nhất?", "answer": "CO2", "keywords": "CO2, Cacbonic", "hint": "Phát thải từ nhà máy"},
+          {"id": 132, "question": "Nguyên tố nào là thành phần chính của kim cương?", "answer": "Cacbon", "keywords": "Cacbon, C", "hint": "C"}
+        ],
+        "500": [
+          {"id": 133, "question": "Nguyên tố nào có độ âm điện lớn nhất?", "answer": "Flo", "keywords": "Flo, F", "hint": "Fluorine"},
+          {"id": 134, "question": "Ai được coi là cha đẻ của hóa học hiện đại?", "answer": "Antoine Lavoisier", "keywords": "Lavoisier", "hint": "Người Pháp"},
+          {"id": 135, "question": "Phản ứng giữa axit và bazo tạo ra nước và gì?", "answer": "Muối", "keywords": "Muối", "hint": "Salt"}
+        ]
+      }
+    },
+    {
+      "name": "Văn Hóa & Nghệ Thuật",
+      "question_pool": {
+        "100": [
+          {"id": 136, "question": "Bức tranh 'Mona Lisa' là tác phẩm của ai?", "answer": "Leonardo da Vinci", "keywords": "Leonardo da Vinci", "hint": "Danh họa người Ý"},
+          {"id": 137, "question": "Nhạc cụ nào có 88 phím?", "answer": "Piano", "keywords": "Piano, Dương cầm", "hint": "Đàn piano"},
+          {"id": 138, "question": "Loại hình nghệ thuật nào sử dụng cử chỉ thay lời nói?", "answer": "Kịch câm", "keywords": "Kịch câm", "hint": "Mime"}
+        ],
+        "200": [
+          {"id": 139, "question": "Vở kịch 'Romeo và Juliet' thuộc thể loại gì?", "answer": "Bi kịch", "keywords": "Bi kịch", "hint": "Tragedy"},
+          {"id": 140, "question": "Tượng Nữ thần Tự do là quà tặng của nước nào cho Mỹ?", "answer": "Pháp", "keywords": "Pháp", "hint": "France"},
+          {"id": 141, "question": "Đàn Bầu của Việt Nam có bao nhiêu dây?", "answer": "1", "keywords": "1", "hint": "Độc huyền cầm"}
+        ],
+        "300": [
+          {"id": 142, "question": "Tác phẩm 'Truyện Kiều' do ai sáng tác?", "answer": "Nguyễn Du", "keywords": "Nguyễn Du", "hint": "Đại thi hào dân tộc"},
+          {"id": 143, "question": "Tháp nghiêng Pisa nằm ở quốc gia nào?", "answer": "Ý", "keywords": "Ý, Italia", "hint": "Italy"},
+          {"id": 144, "question": "Lễ hội Carnival nổi tiếng nhất diễn ra ở đâu?", "answer": "Rio de Janeiro", "keywords": "Rio, Brazil", "hint": "Ở Brazil"}
+        ],
+        "400": [
+          {"id": 145, "question": "Ai được mệnh danh là 'Vua nhạc Pop'?", "answer": "Michael Jackson", "keywords": "Michael Jackson", "hint": "MJ"},
+          {"id": 146, "question": "Bộ phim nào đoạt nhiều giải Oscar nhất lịch sử (11 giải)?", "answer": "Titanic", "keywords": "Titanic", "hint": "Vụ chìm tàu"},
+          {"id": 147, "question": "Họa sĩ nào đã tự cắt tai của chính mình?", "answer": "Vincent van Gogh", "keywords": "Van Gogh", "hint": "Hà Lan"}
+        ],
+        "500": [
+          {"id": 148, "question": "Nhà soạn nhạc thiên tài bị điếc cuối đời là ai?", "answer": "Beethoven", "keywords": "Beethoven", "hint": "Người Đức"},
+          {"id": 149, "question": "Kinh đô của điện ảnh thế giới nằm ở đâu?", "answer": "Hollywood", "keywords": "Hollywood", "hint": "Tại Mỹ"},
+          {"id": 150, "question": "Tác giả của tiểu thuyết 'Nhà thờ Đức Bà Paris' là ai?", "answer": "Victor Hugo", "keywords": "Victor Hugo", "hint": "Văn hào Pháp"}
+        ]
+      }
+    }
+  ]
+}    
