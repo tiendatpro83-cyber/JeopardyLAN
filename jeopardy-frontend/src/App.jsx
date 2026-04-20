@@ -1,13 +1,33 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { io } from 'socket.io-client';
+import { QRCodeSVG } from 'qrcode.react';
 import { 
   Trophy, Monitor, Bell, Zap, User, Star, 
-  Check, X, Eye, EyeOff, Settings, Users, Play, Clock 
+  Check, X, Eye, EyeOff, Settings, Users, Play, Clock, Edit2, QrCode 
 } from 'lucide-react';
 
-const SOCKET_URL = "http://localhost:8000";
+// Thay thế phần SOCKET_URL hiện tại bằng:
 
-// --- 1. CẤU HÌNH & QUẢN LÝ ÂM THANH (Đưa lên đầu) ---
+const getServerUrl = () => {
+  // Lấy hostname hiện tại từ URL đang truy cập
+  const currentHost = window.location.hostname;
+  
+  // Nếu không phải localhost, dùng chính hostname đó cho WebSocket
+  if (currentHost !== 'localhost' && currentHost !== '127.0.0.1') {
+    return `http://${currentHost}:8000`;
+  }
+  
+  // Mặc định cho localhost
+  return "http://localhost:8000";
+};
+
+const SOCKET_URL = getServerUrl();
+
+// Log để debug
+console.log('🌐 Connecting to server:', SOCKET_URL);
+console.log('📍 Current host:', window.location.hostname);
+
+// --- 1. CẤU HÌNH & QUẢN LÝ ÂM THANH ---
 const SOUND_PATHS = {
   INTRO: "/sounds/intro.mp3",
   OPEN_QUESTION: "/sounds/open_question.mp3",
@@ -42,12 +62,12 @@ const soundManager = {
   }
 };
 
-// --- 2. CÁC COMPONENT NHỎ (REUSABLE) ---
+// --- 2. CÁC COMPONENT NHỎ ---
 const MiniScoreboard = ({ players, winnerName }) => (
   <div className="flex flex-wrap gap-2 justify-center py-2 bg-black/20 rounded-xl mb-4 w-full">
-    {Object.values(players).map((p, i) => (
-      <div key={i} className={`px-3 py-1 rounded-lg border-2 flex items-center gap-2 transition-all ${winnerName === p.name ? 'border-yellow-400 bg-yellow-400/20 scale-105 shadow-[0_0_10px_rgba(250,204,21,0.5)]' : 'border-white/10 bg-white/5 opacity-80'}`}>
-        <span className="text-[10px] font-bold uppercase truncate max-w-[60px]">{p.name}</span>
+    {Object.entries(players).map(([id, p], i) => (
+      <div key={id} className={`px-3 py-1 rounded-lg border-2 flex items-center gap-2 transition-all ${winnerName === p.name ? 'border-yellow-400 bg-yellow-400/20 scale-105 shadow-[0_0_10px_rgba(250,204,21,0.5)]' : 'border-white/10 bg-white/5 opacity-80'}`}>
+        <span className="text-[10px] font-bold uppercase truncate max-w-[80px]">{p.name}</span>
         <span className="font-black text-sm text-[#ffcc00]">${p.score}</span>
       </div>
     ))}
@@ -60,6 +80,46 @@ const TimerDisplay = ({ seconds }) => (
     <span className="text-2xl font-black">{seconds}s</span>
   </div>
 );
+
+// Component QR Code cho Host
+// Component QR Code Panel - Cập nhật URL đúng
+const QRCodePanel = ({ playerId, playerName, onClose }) => {
+  // Lấy URL hiện tại (sẽ là IP nếu truy cập từ điện thoại)
+  const baseUrl = window.location.origin;
+  const playerUrl = `${baseUrl}?player=${playerId}`;
+  
+  console.log('📱 QR Code URL:', playerUrl);
+  
+  return (
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50" onClick={onClose}>
+      <div className="bg-white p-8 rounded-2xl max-w-sm w-full" onClick={e => e.stopPropagation()}>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xl font-black text-gray-800">QR Code - {playerName}</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            <X size={24} />
+          </button>
+        </div>
+        <div className="bg-white p-4 rounded-xl flex justify-center">
+          <QRCodeSVG 
+            value={playerUrl} 
+            size={250} 
+            level="H" 
+            includeMargin={true}
+          />
+        </div>
+        <p className="text-center text-gray-600 mt-4 text-sm">
+          Quét mã QR để tham gia với tư cách <strong>{playerName}</strong>
+        </p>
+        <p className="text-center text-gray-400 text-xs mt-2 break-all">
+          {playerUrl}
+        </p>
+        <p className="text-center text-blue-500 text-xs mt-2">
+          💡 Điện thoại và máy tính phải cùng mạng WiFi
+        </p>
+      </div>
+    </div>
+  );
+};
 
 // --- 3. MÀN HÌNH CHÍNH (SCREEN) ---
 const ScreenApp = ({ socket }) => {
@@ -166,8 +226,8 @@ const ScreenApp = ({ socket }) => {
       )}
 
       <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#000839] flex justify-center gap-4">
-        {Object.values(players).map((p, i) => (
-          <div key={i} className={`px-6 py-3 rounded-2xl border-4 min-w-[150px] text-center transition-all ${winner === p.name ? 'bg-yellow-500 border-white scale-110 shadow-lg' : 'bg-[#060ce9] border-[#ffcc00]/50'}`}>
+        {Object.entries(players).map(([id, p]) => (
+          <div key={id} className={`px-6 py-3 rounded-2xl border-4 min-w-[150px] text-center transition-all ${winner === p.name ? 'bg-yellow-500 border-white scale-110 shadow-lg' : 'bg-[#060ce9] border-[#ffcc00]/50'}`}>
             <div className="text-[10px] font-black uppercase opacity-60">{p.name}</div>
             <div className="text-3xl font-black italic">${p.score}</div>
           </div>
@@ -184,6 +244,9 @@ const HostApp = ({ socket }) => {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [winner, setWinner] = useState(null);
   const [timeLeft, setTimeLeft] = useState(15);
+  const [editingPlayer, setEditingPlayer] = useState(null);
+  const [newName, setNewName] = useState("");
+  const [showQRPanel, setShowQRPanel] = useState(null);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -224,13 +287,91 @@ const HostApp = ({ socket }) => {
     else setWinner(null);
   };
 
+  const handleRename = (playerId, currentName) => {
+    setEditingPlayer(playerId);
+    setNewName(currentName);
+  };
+
+  const submitRename = () => {
+    if (newName.trim() && editingPlayer) {
+      socket.emit('rename_player', { player_id: editingPlayer, new_name: newName.trim().toUpperCase() });
+    }
+    setEditingPlayer(null);
+    setNewName("");
+  };
+
+  const handleResetGame = () => {
+    if (window.confirm('Bắt đầu game mới? Tất cả điểm sẽ được reset.')) {
+      socket.emit('reset_game');
+    }
+  };
+
   return (
     <div className="h-screen w-screen bg-slate-950 flex flex-col p-4 gap-4 text-white">
       <div className="flex justify-between items-center">
         <h2 className="font-black text-yellow-500 uppercase tracking-widest flex items-center gap-2">
             <Settings size={20}/> ĐIỀU KHIỂN
         </h2>
-        {winner && <TimerDisplay seconds={timeLeft} />}
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={handleResetGame}
+            className="px-4 py-2 bg-red-600/30 hover:bg-red-600 rounded-lg text-sm font-bold uppercase border border-red-500/50 transition-all"
+          >
+            Game Mới
+          </button>
+          {winner && <TimerDisplay seconds={timeLeft} />}
+        </div>
+      </div>
+
+      {/* Player Management Panel */}
+      <div className="bg-slate-800/50 rounded-2xl p-4 border border-white/10">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-black uppercase tracking-wider text-white/60 flex items-center gap-2">
+            <Users size={16} /> Người Chơi
+          </h3>
+        </div>
+        <div className="flex gap-4 flex-wrap">
+          {Object.entries(players).map(([id, p]) => (
+            <div key={id} className="flex items-center gap-2 bg-black/30 rounded-xl px-4 py-2">
+              {editingPlayer === id ? (
+                <>
+                  <input
+                    type="text"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value.toUpperCase())}
+                    onKeyPress={(e) => e.key === 'Enter' && submitRename()}
+                    className="bg-white text-black px-3 py-1 rounded-lg font-bold text-sm w-32"
+                    autoFocus
+                  />
+                  <button onClick={submitRename} className="text-green-400 hover:text-green-300">
+                    <Check size={18} />
+                  </button>
+                  <button onClick={() => setEditingPlayer(null)} className="text-red-400 hover:text-red-300">
+                    <X size={18} />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <span className="font-bold text-yellow-400">{p.name}</span>
+                  <span className="text-white/40 text-sm">${p.score}</span>
+                  <button 
+                    onClick={() => handleRename(id, p.name)}
+                    className="text-white/40 hover:text-white transition-colors"
+                  >
+                    <Edit2 size={14} />
+                  </button>
+                  <button 
+                    onClick={() => setShowQRPanel({ id, name: p.name })}
+                    className="text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    <QrCode size={14} />
+                  </button>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        <p className="text-[10px] text-white/30 uppercase mt-2">Nhấn biểu tượng QR để hiện mã cho người chơi</p>
       </div>
 
       <MiniScoreboard players={players} winnerName={winner} />
@@ -281,18 +422,29 @@ const HostApp = ({ socket }) => {
           )}
         </div>
       </div>
+
+      {/* QR Code Modal */}
+      {showQRPanel && (
+        <QRCodePanel 
+          playerId={showQRPanel.id} 
+          playerName={showQRPanel.name}
+          onClose={() => setShowQRPanel(null)}
+        />
+      )}
     </div>
   );
 };
 
 // --- 5. MÀN HÌNH NGƯỜI CHƠI (PLAYER) ---
-const PlayerApp = ({ socket }) => {
+const PlayerApp = ({ socket, playerId }) => {
   const [name, setName] = useState("");
   const [isJoined, setIsJoined] = useState(false);
   const [status, setStatus] = useState("idle");
   const [players, setPlayers] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [timeLeft, setTimeLeft] = useState(15);
+  const [editingName, setEditingName] = useState(false);
+  const [tempName, setTempName] = useState("");
   const timerRef = useRef(null);
   const nameRef = useRef("");
 
@@ -313,6 +465,31 @@ const PlayerApp = ({ socket }) => {
     return () => stopTimerLogic();
   }, [socket]);
 
+  // Trong PlayerApp component, sửa phần useEffect:
+useEffect(() => {
+  // Debug log
+  console.log("PlayerApp mounted with playerId:", playerId);
+  
+  // Nếu có playerId từ URL, tự động join
+  if (playerId && !isJoined) {
+    // Lấy số từ playerId (ví dụ: player_1_abc123 -> 1)
+    const playerNumber = playerId.match(/player_(\d+)_/)?.[1] || '1';
+    const defaultName = `Player${playerNumber}`;
+    
+    console.log(`Auto-joining as ${defaultName} with ID ${playerId}`);
+    
+    nameRef.current = defaultName;
+    setName(defaultName);
+    
+    // Gửi event join với player_id
+    socket.emit('player_join_with_id', { 
+      player_id: playerId, 
+      name: defaultName 
+    });
+    setIsJoined(true);
+  }
+}, [playerId, socket, isJoined]);
+
   const startTimer = () => {
     stopTimerLogic();
     setTimeLeft(15);
@@ -329,13 +506,30 @@ const PlayerApp = ({ socket }) => {
     setTimeLeft(15);
   };
 
-  if (!isJoined) {
+  const handleJoin = () => {
+    if(name.trim()) {
+      nameRef.current = name;
+      socket.emit('player_join', { name, player_id: playerId });
+      setIsJoined(true);
+    }
+  };
+
+  const handleRename = () => {
+    if (tempName.trim()) {
+      nameRef.current = tempName;
+      setName(tempName);
+      socket.emit('rename_player', { player_id: playerId, new_name: tempName.trim().toUpperCase() });
+    }
+    setEditingName(false);
+  };
+
+  if (!isJoined && !playerId) {
     return (
       <div className="h-screen w-screen bg-[#000839] flex items-center justify-center p-6 text-white text-center">
         <div className="bg-[#001b6e] p-8 rounded-[2rem] border-4 border-[#ffcc00] w-full max-w-sm shadow-2xl">
           <h1 className="text-3xl font-black mb-8 italic uppercase text-[#ffcc00]">ĐĂNG KÝ TÊN</h1>
           <input type="text" placeholder="NHẬP TÊN..." value={name} onChange={(e) => setName(e.target.value.toUpperCase())} className="w-full bg-black/40 p-4 rounded-xl mb-6 border-2 border-white/10 text-center font-black text-2xl outline-none focus:border-[#ffcc00] uppercase"/>
-          <button onClick={() => { if(name.trim()){ nameRef.current = name; socket.emit('player_join', {name}); setIsJoined(true); }}} className="w-full bg-[#ffcc00] text-black font-black py-5 rounded-2xl shadow-xl active:scale-95 text-xl">VÀO PHÒNG</button>
+          <button onClick={handleJoin} className="w-full bg-[#ffcc00] text-black font-black py-5 rounded-2xl shadow-xl active:scale-95 text-xl">VÀO PHÒNG</button>
         </div>
       </div>
     );
@@ -346,10 +540,42 @@ const PlayerApp = ({ socket }) => {
   return (
     <div className={`h-screen w-screen flex flex-col p-4 transition-all duration-500 ${status === 'active' ? 'bg-green-700' : status === 'winner' ? 'bg-yellow-600' : 'bg-[#000839]'}`}>
       <div className="flex justify-between items-start text-white mb-4">
-        <div>
-           <div className="text-[10px] font-black opacity-60 uppercase tracking-widest">Người chơi</div>
-           <div className="text-xl font-black italic">{nameRef.current}</div>
-           <div className="text-3xl font-black text-[#ffcc00] drop-shadow-md">${myData?.score || 0}</div>
+        <div className="flex items-center gap-2">
+          {editingName ? (
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={tempName}
+                onChange={(e) => setTempName(e.target.value.toUpperCase())}
+                onKeyPress={(e) => e.key === 'Enter' && handleRename()}
+                className="bg-white text-black px-3 py-1 rounded-lg font-bold text-sm w-40"
+                autoFocus
+              />
+              <button onClick={handleRename} className="text-green-400">
+                <Check size={20} />
+              </button>
+              <button onClick={() => setEditingName(false)} className="text-red-400">
+                <X size={20} />
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <div>
+                <div className="text-[10px] font-black opacity-60 uppercase tracking-widest">Người chơi</div>
+                <div className="text-xl font-black italic">{nameRef.current}</div>
+                <div className="text-3xl font-black text-[#ffcc00] drop-shadow-md">${myData?.score || 0}</div>
+              </div>
+              <button 
+                onClick={() => {
+                  setTempName(nameRef.current);
+                  setEditingName(true);
+                }}
+                className="ml-2 text-white/40 hover:text-white transition-colors"
+              >
+                <Edit2 size={16} />
+              </button>
+            </div>
+          )}
         </div>
         {(status === 'winner' || status === 'locked') && <TimerDisplay seconds={timeLeft} />}
       </div>
@@ -386,7 +612,18 @@ const PlayerApp = ({ socket }) => {
 // --- 6. COMPONENT APP (ENTRY POINT) ---
 export default function App() {
   const [role, setRole] = useState(null);
+  const [playerId, setPlayerId] = useState(null);
   const socket = useMemo(() => io(SOCKET_URL), []);
+
+  useEffect(() => {
+    // Kiểm tra URL params cho player
+    const params = new URLSearchParams(window.location.search);
+    const player = params.get('player');
+    if (player) {
+      setPlayerId(player);
+      setRole('player');
+    }
+  }, []);
 
   if (!role) {
     return (
@@ -413,12 +650,11 @@ export default function App() {
     );
   }
 
-  // Luôn đảm bảo ScreenApp, HostApp, PlayerApp đã được định nghĩa ở trên
   return (
     <div className="select-none overflow-hidden touch-none">
       {role === 'host' && <HostApp socket={socket} />}
       {role === 'screen' && <ScreenApp socket={socket} />}
-      {role === 'player' && <PlayerApp socket={socket} />}
+      {role === 'player' && <PlayerApp socket={socket} playerId={playerId} />}
     </div>
   );
 }
