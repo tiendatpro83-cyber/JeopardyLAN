@@ -1,3 +1,5 @@
+# main.py - Chỉ sửa phần đầu file
+
 import socketio
 import uvicorn
 from fastapi import FastAPI
@@ -9,18 +11,13 @@ import asyncio
 import time
 import uuid
 import socket
+from database import load_questions_from_db, init_sample_data
+from cms_routes import router as cms_router
 
-# 1. Cấu hình Socket.io và FastAPI
-sio = socketio.AsyncServer(
-    async_mode='asgi', 
-    cors_allowed_origins='*',
-    logger=True,
-    engineio_logger=True
-)
+# 1. Cấu hình FastAPI trước
 app = FastAPI()
-socket_app = socketio.ASGIApp(sio, app)
 
-# CORS middleware cho phép tất cả origins trong development
+# CORS middleware - ĐẶT TRƯỚC socket_app
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,40 +26,58 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# CMS router
+app.include_router(cms_router)
+
+# 2. Cấu hình Socket.io
+sio = socketio.AsyncServer(
+    async_mode='asgi', 
+    cors_allowed_origins='*',
+    logger=True,
+    engineio_logger=True
+)
+socket_app = socketio.ASGIApp(sio, app)
+
+# ... phần còn lại giữ nguyên
+
 # 2. Logic bốc thăm câu hỏi
 def load_random_questions():
-    file_path = os.path.join("data", "game_data.json")
-    if not os.path.exists(file_path):
-        print(f"Không tìm thấy file dữ liệu: {file_path}")
+    """Load câu hỏi từ database thay vì file JSON"""
+    # Thử load từ database trước
+    all_categories = load_questions_from_db()
+    
+    if not all_categories:
+        print("⚠️ Database trống, đang khởi tạo dữ liệu mẫu...")
+        init_sample_data()
+        all_categories = load_questions_from_db()
+    
+    if not all_categories:
+        print("❌ Không thể load câu hỏi!")
         return []
-
-    try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            full_data = json.load(f)
+    
+    # Chọn ngẫu nhiên 6 lĩnh vực
+    selected_cats = random.sample(all_categories, min(len(all_categories), 6))
+    
+    final_categories = []
+    for cat in selected_cats:
+        new_cat = {"name": cat["name"], "questions": []}
+        pool = cat.get("question_pool", {})
         
-        all_categories = full_data.get("categories", [])
-        selected_cats = random.sample(all_categories, min(len(all_categories), 6))
+        for points in ["100", "200", "300", "400", "500"]:
+            questions_at_points = pool.get(points, [])
+            if questions_at_points:
+                chosen = random.choice(questions_at_points)
+                new_cat["questions"].append({
+                    "points": int(points),
+                    "question": chosen["question"],
+                    "answer": chosen["answer"],
+                    "is_answered": False
+                })
         
-        final_categories = []
-        for cat in selected_cats:
-            new_cat = {"name": cat["name"], "questions": []}
-            pool = cat.get("question_pool", {})
-            for points in ["100", "200", "300", "400", "500"]:
-                questions_at_points = pool.get(points, [])
-                if questions_at_points:
-                    chosen = random.choice(questions_at_points)
-                    new_cat["questions"].append({
-                        "points": int(points),
-                        "question": chosen["question"],
-                        "answer": chosen["answer"],
-                        "is_answered": False
-                    })
+        if new_cat["questions"]:
             final_categories.append(new_cat)
-        return final_categories
-    except Exception as e:
-        print(f"Lỗi load câu hỏi: {e}")
-        return []
-
+    
+    return final_categories
 # 3. Khởi tạo 3 người chơi mặc định
 def init_default_players():
     default_players = {}
@@ -276,6 +291,7 @@ async def close_question(sid):
 
 if __name__ == "__main__":
     # Lấy IP local
+    init_sample_data()
     hostname = socket.gethostname()
     local_ip = socket.gethostbyname(hostname)
     
@@ -299,5 +315,7 @@ if __name__ == "__main__":
     print("   • Nếu dùng Create React App, port có thể là 3000")
     print("   • Đảm bảo tường lửa Windows/Mac cho phép port 8000 và 5173")
     print("=" * 60)
+    print(f"📊 CMS quản lý: http://localhost:8000/cms/categories")
+    print(f"📊 CMS quản lý: http://{local_ip}:8000/cms/categories")
     
     uvicorn.run(socket_app, host="0.0.0.0", port=8000)
